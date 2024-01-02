@@ -11,9 +11,11 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "livewire/livewire": "^3.3",
         "open-admin-ext/helpers": "^1.0",
         "open-admin-org/open-admin": "^1.0",
-        "pbmedia/laravel-ffmpeg": "^8.3"
+        "pbmedia/laravel-ffmpeg": "^8.3",
+        "usamamuneerchaudhary/commentify": "^1.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

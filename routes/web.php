@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\copoController;
 use App\Models\User;
 
 
@@ -25,12 +26,8 @@ Route::get('/', function () {
 });
 
 
-
-
-
-
-
-
+// commentaire
+Route::get('/copo', [copoController::class, 'index'])->name('copo');
 
 
 
