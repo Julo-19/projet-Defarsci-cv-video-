@@ -13,5 +13,13 @@ class Video extends Model
             'title', 
             'description'
         ];
+        public function likes(){
+            return $this->hasMany(Like::class);
+        }
+        public function isLikeByLoggedInUser(){
+            return $this->likes->where('user_id', auth()->user()->id)->isEmpty() ? false: true;
+
+
+        }
 
 }

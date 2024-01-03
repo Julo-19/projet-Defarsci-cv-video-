@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Like;
 use App\Models\Video;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class VideoController extends Controller
@@ -14,7 +16,48 @@ class VideoController extends Controller
         $videos = Video::all();
 
         return view('posts.all-posts', ['videos' => $videos]);
+    }public function like(): JsonResponse {
+        $videoID = request()->id;
+        $video = Video::find($videoID);
+        $user = auth()->user();
+    
+        if ($video->isLikeByLoggedInUser()) {
+            // Dislike
+            $like = Like::where([
+                'user_id' => $user->id,
+                'video_id' => $videoID
+            ])->first();
+    
+            if ($like) {
+                $like->delete();
+            }
+    
+            $count = $video->likes->count();
+    
+            return response()->json([
+                'count' => $count,
+                'color' => 'text-danger'
+            ], 200);
+        } else {
+            // Like
+            $like = new Like();
+            $like->user_id = $user->id;
+            $like->video_id = $videoID;
+            $like->save();
+    
+            $count = $video->likes->count();
+    
+            return response()->json([
+                'count' => $count,
+                'color' => 'text-dark'
+            ], 200);
+        }
     }
+    
+    
+
+
+
 
     public function showUploadForm()
     {

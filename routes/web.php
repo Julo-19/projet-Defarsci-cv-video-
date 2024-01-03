@@ -57,6 +57,7 @@ Route::post('/upload', [VideoController::class, 'uploadVideo'])->name('upload.vi
 Route::get('/video/{id}', [VideoController::class, 'showVideo'])->name('video.show');
 // Route::get('/list-video',[VideoController::class, 'listVideo'])->name('all-posts.posts');
 Route::get('/home', [VideoController::class, 'index'])->name('all-posts.posts');;
+Route::post('/like',[VideoController::class,'like'])->name('videos.like');
 
 
 
